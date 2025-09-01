@@ -18,7 +18,7 @@ def menu():
 
 
 def mostrar_musica(i):
-    print(f"{i+1}. {titulos[i]} - {artistas[i]} | Gênero: {generos[i]} - {duracoes[i]}")
+    print(f"{i+1}. {titulos[i]} - {artistas[i]} | Gênero: {generos[i]} - Duração: {duracoes[i]}")
 
 def adicionar():
     titulo = input("Título: ").strip()
@@ -27,7 +27,7 @@ def adicionar():
         print("Título e artista são obrigatórios.")
         return
     genero = input("Gênero: ").strip() or "Não colocado"
-      duracoes=int(input({"Digite o primeiro número: "}))
+    duracoes=int(input({"Digite a duração: "})).append
     if duracoes <= 0:
         print("Coloque uma duração positiva.")
         return
