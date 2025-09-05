@@ -3,7 +3,6 @@ artistas = []
 generos = []
 duracoes = []
 
-
 def menu():
     print("Escolha uma opção")
     print("1. Adicionar música")
@@ -11,11 +10,10 @@ def menu():
     print("3. Atualizar música")
     print("4. Remover música")
     print("5. Reproduzir música")
+    print("6. Buscar título")
+    print("7. Buscar artista")
+    print("8. Buscar gênero")
     print("0. Sair")
-
-
-
-
 
 def mostrar_musica(i):
     print(f"{i+1}. {titulos[i]} - {artistas[i]} | Gênero: {generos[i]} - Duração: {duracoes[i]}")
@@ -27,15 +25,22 @@ def adicionar():
         print("Título e artista são obrigatórios.")
         return
     genero = input("Gênero: ").strip() or "Não colocado"
-    duracoes=int(input({"Digite a duração: "})).append
-    if duracoes <= 0:
-        print("Coloque uma duração positiva.")
+    
+    try:
+        duracao = int(input("Digite a duração (em minutos): "))
+        duracao = int(input("Digite a duração (em segundos): "))
+        if duracao <= 0:            
+            print("Coloque uma duração positiva.")
+            return
+    except ValueError:
+        print("inválido.")
         return
+
     titulos.append(titulo)
     artistas.append(artista)
     generos.append(genero)
-    duracoes.append(duracoes)
-    print("Música adicionada!")
+    duracoes.append(duracao)
+    print("Música adicionada")
 
 def listar():
     if not titulos:
@@ -43,29 +48,6 @@ def listar():
         return
     for i in range(len(titulos)):
         mostrar_musica(i)
-
-
-def Escolhas_meus_amigos():
-    Escolhas=[
-        ("Cachecol", "Kamaitachi", "Pop"),
-        ("A banda", "Chico Buarque", "MPB"),
-        ("Gnarly", "KATSEYE", "Pop"),
-        ("Maria Madalena", "Luna Di", "Rock Psicodélico"),
-        ("A Little Bit Hard Now", "She Wants Revenge", "Alternativo"),
-        ("Salvatore", "Lana Del Rey", "Pop"),
-        ("Lolita", "Lana Del Rey", "Pop"),
-        ("Cannibal", "Kesha", "Pop"),
-        ("Gomenne Gomenne", "Kikuo", "Vocaloid"),
-        ("A história de Jonny", "Kamaitachi", "Pop")
-    ]
-    for titulo, artista, genero in Escolhas:
-        titulos.append(titulo)
-        artistas.append(artista)
-        generos.append(genero)
-
-
-
-Escolhas_meus_amigos()
 
 def atualizar():
     listar()
@@ -75,13 +57,14 @@ def atualizar():
         if i < 0 or i >= len(titulos):
             print("Número inválido.")
             return
-    except:
-        print("inválido.")
+    except ValueError:
+        print("Inválido.")
         return
     titulos[i] = input("Novo título: ").strip() or titulos[i]
     artistas[i] = input("Novo artista: ").strip() or artistas[i]
     generos[i] = input("Novo gênero: ").strip() or generos[i]
-    print("Música atualizada!")
+    duracoes[i] = input("Nova duração: ").strip() or duracoes[i]
+    print("Música atualizada")
 
 def remover():
     listar()
@@ -91,13 +74,14 @@ def remover():
         if i < 0 or i >= len(titulos):
             print("Número inválido.")
             return
-    except:
+    except ValueError:
         print("Entrada inválida.")
         return
     titulos.pop(i)
     artistas.pop(i)
     generos.pop(i)
-    print("Música removida!")
+    duracoes.pop(i)
+    print("Música removida")
 
 def reproduzir():
     listar()
@@ -107,15 +91,17 @@ def reproduzir():
         if i < 0 or i >= len(titulos):
             print("Número inválido.")
             return
-    except:
+    except ValueError:
         print("Entrada inválida.")
         return
-    print("Reproduzir")
+    print("Reproduzindo...")
     mostrar_musica(i)
 
-
-
-
+def titulo():
+    Buscar_titulo()
+    if not titulos: return
+    for i in range:
+    filtrar_titulo = titulos.index(titulo)
 
 def main():
     while True:
@@ -126,10 +112,12 @@ def main():
         elif op == "3": atualizar()
         elif op == "4": remover()
         elif op == "5": reproduzir()
+        elif op == "6": Buscar_titulo()
         elif op == "0":
-            print("Voltar")
+            print("Saindo...")
             break
         else:
             print("Opção inválida.")
 
 main()
+
