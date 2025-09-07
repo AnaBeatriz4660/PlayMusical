@@ -97,11 +97,7 @@ def reproduzir():
     print("Reproduzindo...")
     mostrar_musica(i)
 
-def titulo():
-    Buscar_titulo()
-    if not titulos: return
-    for i in range:
-    filtrar_titulo = titulos.index(titulo)
+
 
 def main():
     while True:
@@ -112,7 +108,6 @@ def main():
         elif op == "3": atualizar()
         elif op == "4": remover()
         elif op == "5": reproduzir()
-        elif op == "6": Buscar_titulo()
         elif op == "0":
             print("Saindo...")
             break
@@ -120,4 +115,3 @@ def main():
             print("Opção inválida.")
 
 main()
-
