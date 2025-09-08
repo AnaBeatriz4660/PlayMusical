@@ -1,7 +1,11 @@
 titulos = []
 artistas = []
 generos = []
-duracoes = []
+duracao = []
+duracao_seg= []
+buscar_musica = []
+buscar_artista = []
+buscar_genero = []
 
 def menu():
     print("Escolha uma opção")
@@ -16,7 +20,8 @@ def menu():
     print("0. Sair")
 
 def mostrar_musica(i):
-    print(f"{i+1}. {titulos[i]} - {artistas[i]} | Gênero: {generos[i]} - Duração: {duracoes[i]}")
+   print(f"{i+1}. {titulos[i]} - {artistas[i]} | Gênero: {generos[i]} - Duração: {duracao[i]}:{duracao_seg[i]}")
+
 
 def adicionar():
     titulo = input("Título: ").strip()
@@ -27,9 +32,12 @@ def adicionar():
     genero = input("Gênero: ").strip() or "Não colocado"
     
     try:
-        duracao = int(input("Digite a duração (em minutos): "))
-        duracao = int(input("Digite a duração (em segundos): "))
-        if duracao <= 0:            
+        duracao_min = int(input("Digite a duração (em minutos): "))
+        duracao_em_seg = int(input("Digite a duração (em segundos): "))
+        if duracao_min <= 0:            
+            print("Coloque uma duração positiva.")
+            return
+        elif duracao_em_seg <= 0:            
             print("Coloque uma duração positiva.")
             return
     except ValueError:
@@ -39,7 +47,8 @@ def adicionar():
     titulos.append(titulo)
     artistas.append(artista)
     generos.append(genero)
-    duracoes.append(duracao)
+    duracao.append(duracao_min)
+    duracao_seg.append(duracao_em_seg)
     print("Música adicionada")
 
 def listar():
@@ -63,7 +72,8 @@ def atualizar():
     titulos[i] = input("Novo título: ").strip() or titulos[i]
     artistas[i] = input("Novo artista: ").strip() or artistas[i]
     generos[i] = input("Novo gênero: ").strip() or generos[i]
-    duracoes[i] = input("Nova duração: ").strip() or duracoes[i]
+    duracao[i] = input("Nova duração(Em minutos): ").strip() or duracao[i]
+    duracao_seg[i] = input("Nova duração(Em segundos): ").strip() or duracao_seg[i]
     print("Música atualizada")
 
 def remover():
@@ -80,7 +90,8 @@ def remover():
     titulos.pop(i)
     artistas.pop(i)
     generos.pop(i)
-    duracoes.pop(i)
+    duracao.pop(i)
+    duracao_seg.pop(i)
     print("Música removida")
 
 def reproduzir():
@@ -98,6 +109,41 @@ def reproduzir():
     mostrar_musica(i)
 
 
+def buscar_titulo():
+    titulo_busca = input("Digite o titulo: ").strip().lower()
+    resultados = [i for i, t in enumerate(titulos) if titulo_busca in t.lower()]
+    if resultados:
+        print(f"Resultado encontrado:")
+        for i in resultados:
+            mostrar_musica(i)
+
+    else:
+        print("música não encontrada.")
+
+
+def buscar_artista():
+    artista_busca = input("Digite o nome do artista: ").strip().lower()
+    resultados = [i for i, a in enumerate(artistas) if artista_busca == a.lower()]
+    if resultados:
+        print(f"Resultado encontrado:")
+        for i in resultados:
+            mostrar_musica(i)
+    else:
+        print("Musica não encontrada.")
+
+
+
+def buscar_genero():
+    genero_busca = input("Digite o gênero: ").strip().lower()
+    resultados = [i for i, g in enumerate(generos) if genero_busca == g.lower()]
+    if resultados:
+        print(f"Resultado encontrado:")
+        for i in resultados:
+            mostrar_musica(i)
+    else:
+        print("música não encontrada.")
+
+
 
 def main():
     while True:
@@ -108,6 +154,9 @@ def main():
         elif op == "3": atualizar()
         elif op == "4": remover()
         elif op == "5": reproduzir()
+        elif op == "6": buscar_titulo()
+        elif op == "7": buscar_artista()
+        elif op == "8": buscar_genero()
         elif op == "0":
             print("Saindo...")
             break
@@ -115,3 +164,4 @@ def main():
             print("Opção inválida.")
 
 main()
+
